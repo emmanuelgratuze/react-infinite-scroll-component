@@ -11,6 +11,7 @@ export interface Props {
   scrollThreshold?: number | string;
   endMessage?: ReactNode;
   style?: CSSProperties;
+  outerStyle?: CSSProperties;
   height?: number | string;
   scrollableTarget?: ReactNode;
   hasChildren?: boolean;
@@ -309,8 +310,8 @@ export default class InfiniteScroll extends Component<Props, State> {
     // on drag down as overflow becomes visible
     const outerDivStyle =
       this.props.pullDownToRefresh && this.props.height
-        ? { overflow: 'auto' }
-        : {};
+        ? { overflow: 'auto', ...this.props.outerStyle }
+        : { ...this.props.outerStyle };
     return (
       <div
         style={outerDivStyle}
